@@ -1,0 +1,40 @@
+Welcome to SWI-Prolog (threaded, 64 bits, version 10.0.2)
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.
+Please run ?- license. for legal details.
+
+For online help and background, visit https://www.swi-prolog.org
+For built-in help, use ?- help(Topic). or ?- apropos(Word).
+
+46 ?- house = house.
+true.
+Both terms are exactly the same, so they can be unified successfully.
+47 ?- house = abc.
+false.
+house and abc different constants, so they cannot be unified.
+48 ?- edge(a,b) = edge(C,b).
+C = a.
+The second arguments are already equal. To make the first arguments equal, C must be a. 
+49 ?- edge(a,d) = edge(C,B).
+C = a,
+B = d.
+The corresponding arguments must be equal.
+50 ?- edge(C,B) = edge(a,d).
+C = a,
+B = d.
+The corresponding arguments must be equal.
+51 ?- edge(A,f(g,h)) = edge(a,B).
+A = a,
+B = f(g, h).
+The corresponding arguments must be equal.
+52 ?- edge(A,A) = edge(b,c).
+false.
+A must have the same value in both positions, but this would require A=band A=c at the same time. Since b and c are different, unification fails.
+53 ?- edge(A,A) = edge(b,b).
+A = b.
+Both positions contain the same value b, so A can be unified with b successfully.
+54 ?- A = B, B = f.
+A = B, B = f.
+A and B are unified first. Then B is assigned the value f, so both variables refer to f.
+55 ?- A = B, B = f, A = e.
+false.
+A and B are first unified, then B = f makes both equal to f. The condition A=e conflicts with this because f and e are different.
